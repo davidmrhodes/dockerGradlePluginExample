@@ -1,0 +1,13 @@
+
+createDockerfile {
+    destFile = project.file('build/centos/Dockerfile')
+    from 'centos'
+    runCommand 'yum install -y wget'
+    maintainer 'David M. Rhodes "barnaby71@gmail.com"'
+}
+
+buildImage {
+    dependsOn createDockerfile
+    inputDir = createDockerfile.destFile.parentFile
+    tag = 'davidmrhodes/myimagecentos'
+}

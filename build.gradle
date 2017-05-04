@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-docker-plugin:3.0.6'
+    }
+}
+
+apply plugin: 'com.bmuschko.docker-remote-api'
+
+import com.bmuschko.gradle.docker.tasks.image.Dockerfile
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+
+subprojects {
+    buildscript {
+        repositories {
+            jcenter()
+        }
+
+        dependencies {
+            classpath 'com.bmuschko:gradle-docker-plugin:3.0.6'
+        }
+    }
+    apply plugin: 'com.bmuschko.docker-remote-api'
+
+    task createDockerfile(type: Dockerfile) {
+    }
+
+    task buildImage(type: DockerBuildImage) {
+
+    }
+
+    task clean {
+        delete buildDir
+    }
+}
